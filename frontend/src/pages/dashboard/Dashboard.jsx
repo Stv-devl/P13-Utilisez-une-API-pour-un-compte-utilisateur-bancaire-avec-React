@@ -1,5 +1,6 @@
 import React from "react";
 
+//ajouter un log out (dans banniere)
 const Dashboard = () => {
   return (
     <main className="main bg-dark">

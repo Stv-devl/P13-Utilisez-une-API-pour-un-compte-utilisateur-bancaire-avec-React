@@ -1,8 +1,12 @@
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import loginService from "../../services/loginService";
+import { useDispatch, useSelector } from "react-redux";
+import { postLogin } from "../../actions/login.action";
 
 const SignIn = () => {
+  const { login, loading, error } = useSelector((state) => state.loginReducer);
+  const dispatch = useDispatch();
+
   const form = useRef();
   const navigate = useNavigate();
 
@@ -12,16 +16,13 @@ const SignIn = () => {
     const email = form.current[0].value;
     const password = form.current[1].value;
 
-    try {
-      const response = await loginService(email, password);
-      console.log("Réponse de l'authentification:", response);
-      navigate("/dashboard");
-    } catch (error) {
-      console.error("Erreur lors de l'authentification:", error.message);
-    }
+    dispatch(postLogin(email, password));
+
+    login && navigate("/dashboard");
   };
-  //securiser la connection
-  //gerer le remember me dans local storage
+  //validation du formulaire (message erreur + succes)
+  //securiser la connection (localStorage ou cookies?)
+  //gerer le "remember me" dans local storage
   return (
     <main className="main bg-dark">
       <section className="sign-in-content">
@@ -41,7 +42,12 @@ const SignIn = () => {
             <input type="checkbox" id="remember-me" />
             <label htmlFor="remember-me">Remember me</label>
           </div>
-          <input type="submit" value="Sign In" className="sign-in-button" />
+          <input
+            type="submit"
+            value="Sign In"
+            className="sign-in-button"
+            disabled={loading}
+          />
         </form>
       </section>
     </main>
