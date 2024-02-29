@@ -1,11 +1,11 @@
 import axios from "axios";
 
-const loginService = async (email, password) => {
+const loginService = async (username, password) => {
   try {
     const response = await axios.post(
       "http://localhost:3001/api/v1/user/login",
       {
-        email: email,
+        email: username,
         password: password,
       },
       {
@@ -14,10 +14,11 @@ const loginService = async (email, password) => {
         },
       }
     );
-
     if (response.status === 200) {
-      console.log("Login successful", response.data);
-      return response.data;
+      console.log("Login successful");
+      const token = await response.data.body.token;
+      const user = await JSON.parse(response.config.data).email;
+      return { token, user };
     } else {
       console.error("Login failed with status", response.status);
       throw new Error("Login failed");

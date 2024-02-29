@@ -5,6 +5,7 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import Banner from "./components/banner/Banner";
 import Footer from "./components/footer/Footer";
 import SignIn from "./pages/signin/SignIn";
+import PrivateRoute from "./auth/PrivateRoute";
 
 const App = () => {
   return (
@@ -13,7 +14,14 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
         <Route path="/signin" element={<SignIn />} />
         <Route path="*" element={<Error />} />
       </Routes>
