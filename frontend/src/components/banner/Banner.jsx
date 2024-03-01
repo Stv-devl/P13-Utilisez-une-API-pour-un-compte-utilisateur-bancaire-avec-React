@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useIsAuth } from "../../auth/useIsAuth";
+import { useAuth } from "../../auth/useAuth";
 import { useEffect, useState } from "react";
 import Logout from "../logout/Logout";
 /**
@@ -9,8 +9,7 @@ import Logout from "../logout/Logout";
 
 const Banner = () => {
   const [isLogin, setIsLogin] = useState(false);
-
-  const authStatus = useIsAuth();
+  const authStatus = useAuth();
 
   useEffect(() => {
     setIsLogin(authStatus);

@@ -1,8 +1,8 @@
 import { Navigate } from "react-router-dom";
-import { useIsAuth } from "./useIsAuth";
+import { useAuth } from "./useAuth";
 
 const PrivateRoute = ({ children }) => {
-  const isAuthenticated = useIsAuth();
+  const isAuthenticated = useAuth();
   return isAuthenticated ? children : <Navigate to="/signin" replace />;
 };
 
