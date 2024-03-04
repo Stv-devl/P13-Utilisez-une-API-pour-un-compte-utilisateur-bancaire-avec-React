@@ -60,9 +60,7 @@ const SignIn = () => {
             <label htmlFor="remember-me">Remember me</label>
           </div>
           {error && (
-            <span className="errorMessage">
-              Veuillez rentrer des informations valides
-            </span>
+            <span className="errorMessage">Incorrect username or password</span>
           )}
           <button type="submit" className="sign-in-button">
             Sign In
