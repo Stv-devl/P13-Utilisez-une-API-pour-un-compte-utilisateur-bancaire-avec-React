@@ -1,14 +1,8 @@
-import { UserBankModel, UserModel } from "../../service/formatData";
+import { UserBankModel } from "../../service/formatData";
 import { userData } from "../../data/userBankData";
 
-const Account = ({ datas }) => {
-  if (!datas) {
-    return null;
-  }
-  const userModel = new UserModel(datas);
-  const { firstName } = userModel.models;
-  const filteredUserData = userData.filter((user) => user.name === firstName);
-  const userBankModel = new UserBankModel(filteredUserData);
+const Account = () => {
+  const userBankModel = new UserBankModel(userData);
   const {
     bankChecking,
     bankCheckingMulti,

@@ -1,6 +1,6 @@
 export class UserModel {
   constructor(data) {
-    this.data = data;
+    this.data = data.userData ? data.userData : data;
     this.createdAt = this.data.createdAt;
     this.email = this.data.email;
     this.firstName = this.data.firstName;
@@ -20,23 +20,18 @@ export class UserModel {
     };
   }
 }
-
 export class UserBankModel {
   constructor(data) {
-    this.username = data[0].name;
-    this.id = data.id;
-    this.bankChecking = data[0].data.bankChecking.amount;
-    this.bankCheckingMulti = data[0].data.bankChecking.multiplicator;
-    this.bankSaving = data[0].data.bankSaving.amount;
-    this.bankSavingMulti = data[0].data.bankSaving.multiplicator;
-    this.bankCreditCard = data[0].data.bankCreditCard.amount;
-    this.bankCreditCardMulti = data[0].data.bankCreditCard.multiplicator;
+    this.bankChecking = data[0].bankChecking.amount;
+    this.bankCheckingMulti = data[0].bankChecking.multiplicator;
+    this.bankSaving = data[0].bankSaving.amount;
+    this.bankSavingMulti = data[0].bankSaving.multiplicator;
+    this.bankCreditCard = data[0].bankCreditCard.amount;
+    this.bankCreditCardMulti = data[0].bankCreditCard.multiplicator;
   }
 
   get bankModel() {
     return {
-      names: this.username,
-      id: this.id,
       bankChecking: this.bankChecking,
       bankCheckingMulti: this.bankCheckingMulti,
       bankSaving: this.bankSaving,

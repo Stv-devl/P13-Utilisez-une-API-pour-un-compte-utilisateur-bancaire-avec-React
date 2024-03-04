@@ -257,6 +257,9 @@ body {
   color: #fff;
   font-weight: bold;
   padding: 10px;
+  width: 89.31px;
+  height: 39.33px;
+  cursor: pointer;
 }
 
 .header {
@@ -305,6 +308,41 @@ body {
   width: 60px;
   height: 60px;
   animation: loader 2.5s linear infinite;
+}
+
+.input-remember {
+  margin-bottom: 5px;
+}
+
+.errorMessage {
+  color: #da2020;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.from-wrapper {
+  display: flex;
+  justify-content: center;
+}
+.changeNameForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 15px;
+  width: 120px;
+}
+.input-name-wrapper {
+  display: flex;
+  gap: 20px;
+}
+#changeFirstname,
+#changeLastname {
+  width: 182px;
+  height: 23px;
+  padding-left: 10px;
+}
+button {
+  cursor: pointer;
 }
 
 @media (min-width: 720px) {
