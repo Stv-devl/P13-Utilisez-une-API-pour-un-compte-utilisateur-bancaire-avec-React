@@ -1,19 +1,27 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../../auth/useAuth";
 import { useEffect, useState } from "react";
-import Logout from "../logout/Logout";
-/**
- * The component represent the horizontal nav on the top of the project .
- * @returns {JSX.Element} - The nav element containing the navigation bar with logo and link to SignIn.
- */
+import { useDispatch } from "react-redux";
+import { userLogout } from "../../features/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const Banner = () => {
-  const [isLogin, setIsLogin] = useState(false);
   const authStatus = useAuth();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
     setIsLogin(authStatus);
   }, [authStatus]);
+
+  const handleLogout = () => {
+    dispatch(userLogout());
+    localStorage.removeItem("Token");
+    setIsLogin(false);
+    navigate("/signin");
+  };
 
   return (
     <nav className="main-nav">
@@ -35,9 +43,9 @@ const Banner = () => {
               alt="user profil"
             />
           </Link>
-          <div>
-            <Logout setIsLogin={setIsLogin} />
-          </div>
+          <button className="loggout-btn" onClick={handleLogout}>
+            Sign Out
+          </button>
         </div>
       )}
 

@@ -279,9 +279,22 @@ body {
   color: #fff;
 }
 
+.loginWrapper {
+  display: flex;
+  gap: 7px;
+}
 .user-avatar {
   width: 30px;
   height: 30px;
+}
+
+.loggout-btn {
+  padding-top: 4px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: #2c3e50;
 }
 
 .loader-container {
