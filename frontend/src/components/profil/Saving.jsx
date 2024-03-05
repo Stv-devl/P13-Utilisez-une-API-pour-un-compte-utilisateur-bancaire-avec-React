@@ -1,4 +1,4 @@
-const SavingAccount = ({ bankSaving, bankSavingMulti }) => (
+const Saving = ({ bankSaving, bankSavingMulti }) => (
   <section className="account">
     <div className="account-content-wrapper">
       <h3 className="account-title">{`Argent Bank Savings (${bankSavingMulti})`}</h3>
@@ -11,4 +11,4 @@ const SavingAccount = ({ bankSaving, bankSavingMulti }) => (
   </section>
 );
 
-export default SavingAccount;
+export default Saving;
