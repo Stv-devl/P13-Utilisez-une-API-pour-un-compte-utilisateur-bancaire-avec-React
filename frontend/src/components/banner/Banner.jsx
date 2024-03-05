@@ -5,6 +5,11 @@ import { userLogout } from "../../features/authSlice";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../auth/useAuth";
 
+/**
+ * The componant is navigation bar. If the user is authenticated the nav will have a profil picture and a logout button.
+ * @returns {JSX.Element} - The navigation with with logo and links.
+ */
+
 const Banner = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -16,11 +21,14 @@ const Banner = () => {
     setIsLogin(authStatus);
   }, [authStatus]);
 
+  /**
+   * Logs out the user by dispatching the logout action, clearing the token from localStorage, updating the state, and navigating to the login page.
+   */
   const handleLogout = () => {
     dispatch(userLogout());
     localStorage.removeItem("Token");
     setIsLogin(false);
-    navigate("/signin");
+    navigate("/login");
   };
 
   return (
@@ -48,7 +56,7 @@ const Banner = () => {
         </div>
       ) : (
         <div>
-          <Link className="main-nav-item" to={`/signin`}>
+          <Link className="main-nav-item" to={`/login`}>
             <i className="fa fa-user-circle"></i>
             Sign In
           </Link>

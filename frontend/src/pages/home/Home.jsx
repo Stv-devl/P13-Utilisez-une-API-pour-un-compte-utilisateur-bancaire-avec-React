@@ -1,3 +1,7 @@
+/**
+ * The Home component
+ * @returns {JSX.Element} - The Home component show the bank's services and features.
+ */
 const Home = () => {
   return (
     <main>

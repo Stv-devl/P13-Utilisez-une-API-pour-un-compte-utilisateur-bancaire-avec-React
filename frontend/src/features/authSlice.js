@@ -10,6 +10,15 @@ const initialState = {
   error: null,
 };
 
+/**
+ * Async thunk for user login. Attempts to log the user with credentials.
+ * If successful and rememberMe is true, the receved jwt token is encrypted and stored.
+ * @param {string} username - The user's username.
+ * @param {string} password - The user's password.
+ * @param {boolean} rememberMe - To remember the checked user
+ * @returns {Object} - The user token and rememberMe.
+ */
+
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async ({ username, password, rememberMe }, { rejectWithValue }) => {

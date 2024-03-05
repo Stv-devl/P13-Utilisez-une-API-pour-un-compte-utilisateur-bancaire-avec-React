@@ -1,4 +1,8 @@
 export class UserBankModel {
+  /**
+   * Initializes a new instance of UserBankModel with data for the user's banking accounts.
+   * @param {Object[]} data - The user's bank account data.
+   */
   constructor(data) {
     this.bankChecking = data[0].bankChecking.amount;
     this.bankCheckingMulti = data[0].bankChecking.multiplicator;
@@ -9,6 +13,10 @@ export class UserBankModel {
   }
 
   get bankModel() {
+    /**
+     * Gets the banking model with details for checking, saving, and credit card accounts.
+     * @returns {Object} - The banking model with account details.
+     */
     return {
       bankChecking: this.bankChecking,
       bankCheckingMulti: this.bankCheckingMulti,

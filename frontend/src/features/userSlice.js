@@ -2,6 +2,12 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import userService from "../service/userService";
 import editService from "../service/editService";
 
+/**
+ * Async thunk for user verification. If the token of user is correct we fetch the user data,
+ * @param {string} token - The authentication token for user verification.
+ * @returns {Object} userData upon successful verification.
+ */
+
 export const userVerification = createAsyncThunk(
   "auth/userVerification",
   async (token, { rejectWithValue }) => {
@@ -14,6 +20,13 @@ export const userVerification = createAsyncThunk(
   }
 );
 
+/**
+ * Async thunk for edit user names. If the token of user is correct we can update edit
+ * @param {string} firstName - The user's new firstname.
+ * @param {string} lastName - The user's new lastname.
+ * @param {string} token - The jwt token for user identification.
+ * @returns {Object} - A object with the updated names
+ */
 export const editUserName = createAsyncThunk(
   "user/editUserName",
   async ({ firstName, lastName, token }, { rejectWithValue }) => {

@@ -4,7 +4,14 @@ import { loginUser } from "../../features/authSlice";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../components/loading/Loading";
 
-const SignIn = () => {
+/**
+ * Login component
+ * Display a form for user authentication. It allows the user to write their username and password, and checkbox for remember they are login.
+ * On successful login, the user is redirected to the dashboard.
+ * @returns {JSX.Element} - The Login component with a sign-in form.
+ */
+
+const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -14,6 +21,9 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
+  /**
+   * Function to handle the sign-in process by dispatching the loginUser action with the provided credentials. On successful login, navigates the user to the dashboard.
+   */
   const handleSignIn = (e) => {
     e.preventDefault();
     const credentials = { username, password, rememberMe };
@@ -72,4 +82,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default Login;

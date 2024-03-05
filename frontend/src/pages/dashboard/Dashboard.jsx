@@ -6,6 +6,12 @@ import Account from "../../components/profil/Account";
 import { useAuth } from "../../auth/useAuth";
 import { userVerification } from "../../features/userSlice";
 
+/**
+ * Dashboard component
+ * Displays user information and account details.
+ * @returns {JSX.Element} - The Dashboard component with conditional rendering based on loading state and authentication.
+ */
+
 const Dashboard = () => {
   const { loading, firstName, lastName } = useSelector(
     ({ userDatas }) => userDatas

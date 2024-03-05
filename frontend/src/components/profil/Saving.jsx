@@ -1,3 +1,10 @@
+/**
+ * Saving component
+ * Displays the savings account section with balance and a transaction button.
+ * @param {number} bankSaving - The savings account balance.
+ * @param {string} bankSavingMulti - The account multiplier.
+ * @returns {JSX.Element} - The savings account section.
+ */
 const Saving = ({ bankSaving, bankSavingMulti }) => (
   <section className="account">
     <div className="account-content-wrapper">

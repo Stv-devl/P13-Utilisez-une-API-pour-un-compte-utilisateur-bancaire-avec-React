@@ -1,5 +1,13 @@
 import axios from "axios";
 
+/**
+ * Userservice to retrieve the user's profile information.
+ * Sends a POST request to the server with the user's authentication token.
+ * @param {string} token - The authentication token for the user.
+ * @returns {Promise<Object>} - A promise that send the userData if the request is successful.
+ * @throws {Error} - Throws an error if the request fails or if the response status is not 200.
+ */
+
 const userService = async (token) => {
   try {
     const response = await axios.post(

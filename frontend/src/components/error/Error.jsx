@@ -1,5 +1,5 @@
 /**
- * The component is diplsay the error message
+ * The component is diplsaying the error message
  * @returns {JSX.Element} - An error message
  */
 const Error = () => {

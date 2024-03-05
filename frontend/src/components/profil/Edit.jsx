@@ -1,3 +1,16 @@
+/**
+ * Edit component
+ * Display a form for lets users to edit their firstname and lastname.
+ * @param {string} newFirstName - The value for the newfirstname.
+ * @param {Function} setNewFirstName - The useState to update the newfirstname.
+ * @param {string} newLastName - The value for the newlastname.
+ * @param {Function} setNewLastName - The useState to update the newfirstname.
+ * @param {Function} handleSubmit - Function to handle the form submission.
+ * @param {Function} handleCancel - Function to cancel the editing.
+ * @param {string} error - Error message to display if there's an error.
+ * @returns {JSX.Element} - The form for editing names.
+ */
+
 const Edit = ({
   newFirstName,
   setNewFirstName,

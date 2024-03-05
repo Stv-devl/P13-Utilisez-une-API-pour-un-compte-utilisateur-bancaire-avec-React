@@ -1,5 +1,14 @@
 import axios from "axios";
 
+/**
+ * loginService to authenticate a user.
+ * Sends a POST request to the server with the user's credentials.
+ * @param {string} username - The user's username.
+ * @param {string} password - The user's password.
+ * @returns {Promise<Object>} - A promise with the user's jwt token if login is successful.
+ * @throws {Error} - Throws an error if the login request fails or if the response status is not 200.
+ */
+
 const loginService = async (username, password) => {
   try {
     const response = await axios.post(

@@ -1,5 +1,15 @@
 import axios from "axios";
 
+/**
+ * Editservice to edit the user's firstname and lastname.
+ * Sends a PUT request to the server with the updated names and jwt token.
+ * @param {string} firstName - The new firstname of the user.
+ * @param {string} lastName - The new lastname of the user.
+ * @param {string} token - The jwt token to verify the user.
+ * @returns {Promise<Object>} - A promise that send the updated userdata if the request is successful.
+ * @throws {Error} - Throws an error if the request fails or the response status is not 200.
+ */
+
 const editService = async (firstName, lastName, token) => {
   try {
     const response = await axios.put(
