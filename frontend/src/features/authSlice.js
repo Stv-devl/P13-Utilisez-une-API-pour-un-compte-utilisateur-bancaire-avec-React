@@ -9,18 +9,16 @@ const initialState = {
   loading: false,
   error: null,
 };
-/*const delay = (time) => new Promise((resolve) => setTimeout(resolve, time));*/
 
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async ({ username, password, rememberMe }, { rejectWithValue }) => {
     try {
-      /*await delay(5000);*/
-      const { token, user } = await loginService(username, password);
+      const { token } = await loginService(username, password);
       if (rememberMe) {
         encryptToken(rememberMe, token);
       }
-      return { token, user, rememberMe };
+      return { token, rememberMe };
     } catch (err) {
       return rejectWithValue(err.message);
     }
@@ -32,7 +30,6 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     userLogout: (state, action) => {
-      state.user = null;
       state.token = null;
       state.remember = false;
       state.loading = false;
@@ -46,7 +43,6 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
-        state.user = action.payload.user;
         state.token = action.payload.token;
         state.remember = action.payload.rememberMe;
         state.loading = false;

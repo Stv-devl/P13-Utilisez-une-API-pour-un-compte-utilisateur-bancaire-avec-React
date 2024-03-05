@@ -7,7 +7,9 @@ import { useAuth } from "../../auth/useAuth";
 import { userVerification } from "../../features/userSlice";
 
 const Dashboard = () => {
-  const { loading, userData } = useSelector(({ userDatas }) => userDatas);
+  const { loading, firstName, lastName } = useSelector(
+    ({ userDatas }) => userDatas
+  );
   const isAuthenticated = useAuth();
   const dispatch = useDispatch();
 
@@ -19,12 +21,16 @@ const Dashboard = () => {
 
   return (
     <>
-      {loading || !userData ? (
+      {loading ? (
         <Loading />
       ) : (
         <main className="main bg-dark">
-          <Header datas={userData} isAuthenticated={isAuthenticated} />
-          <Account datas={userData} />
+          <Header
+            firstName={firstName}
+            lastName={lastName}
+            isAuthenticated={isAuthenticated}
+          />
+          <Account />
         </main>
       )}
     </>

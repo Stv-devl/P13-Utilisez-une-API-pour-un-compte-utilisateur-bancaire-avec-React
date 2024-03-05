@@ -18,11 +18,9 @@ const editService = async (firstName, lastName, token) => {
     if (response.status === 200) {
       console.log("Change name of user successfully:", response.data);
       const userData = response.data.body;
-
-      console.log(userData);
       return { userData };
     } else {
-      console.error("failedd with status", response.status);
+      console.error("failed with status", response.status);
       throw new Error("failed to change name of user");
     }
   } catch (error) {

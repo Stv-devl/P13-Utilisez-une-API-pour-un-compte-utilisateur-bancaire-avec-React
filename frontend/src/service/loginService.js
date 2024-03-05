@@ -17,8 +17,7 @@ const loginService = async (username, password) => {
     if (response.status === 200) {
       console.log("Login successful");
       const token = await response.data.body.token;
-      const user = await JSON.parse(response.config.data).email;
-      return { token, user };
+      return { token };
     } else {
       console.error("Login failed with status", response.status);
       throw new Error("Login failed");

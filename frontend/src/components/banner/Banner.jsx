@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
-import { useAuth } from "../../auth/useAuth";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { userLogout } from "../../features/authSlice";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../auth/useAuth";
 
 const Banner = () => {
-  const authStatus = useAuth();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const authStatus = useAuth();
 
   const [isLogin, setIsLogin] = useState(false);
 
@@ -33,8 +33,7 @@ const Banner = () => {
         />
         <h1 className="sr-only">Argent Bank</h1>
       </Link>
-
-      {isLogin && (
+      {isLogin ? (
         <div className="loginWrapper">
           <Link className="main-nav-logo" to={`/dashboard`}>
             <img
@@ -47,9 +46,7 @@ const Banner = () => {
             Sign Out
           </button>
         </div>
-      )}
-
-      {!isLogin && (
+      ) : (
         <div>
           <Link className="main-nav-item" to={`/signin`}>
             <i className="fa fa-user-circle"></i>

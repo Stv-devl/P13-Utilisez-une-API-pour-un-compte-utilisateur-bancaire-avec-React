@@ -1,14 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { UserModel } from "../../service/formatData";
 import { editUserName, userVerification } from "../../features/userSlice";
 import Edit from "./Edit";
 
-const Header = ({ datas, isAuthenticated }) => {
+const Header = ({ firstName, lastName, isAuthenticated }) => {
   const dispatch = useDispatch();
-
-  const userModel = new UserModel(datas || {});
-  const { firstName, lastName } = userModel.models;
 
   const [isEditing, setIsEditing] = useState(false);
   const [newFirstName, setNewFirstName] = useState(firstName);
@@ -22,7 +18,8 @@ const Header = ({ datas, isAuthenticated }) => {
     }
   }, [firstName, lastName, isEditing]);
 
-  const validateName = (name) => /^[A-Za-zÀ-ÖØ-öø-ÿ\-_.]{3,25}$/.test(name);
+  const validateName = (name) =>
+    /^[ ]*[A-Za-zÀ-ÖØ-öø-ÿ\-_. ]{3,25}[ ]*$/.test(name);
 
   const handleSubmit = useCallback(
     (e) => {
