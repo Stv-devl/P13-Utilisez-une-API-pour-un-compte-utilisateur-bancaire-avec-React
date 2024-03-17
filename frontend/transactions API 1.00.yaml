@@ -1,0 +1,220 @@
+openapi: 3.0.3
+info:
+  title: Bank Argent transactions API 1.00
+  description: A list of available endpoints for the transactions
+  termsOfService: https://smartbear.com/terms-of-use/
+  version: 2.0.0
+
+servers:
+  - url: "https"
+
+paths:
+  /user/transactions:
+    get:
+      summary: Get a list of transactions for the current month
+      description: API for get a list of transactions of the current month
+      operationId: getTransactions
+      tags:
+        - User transaction
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: header
+          name: Authorization
+          schema:
+            type: string
+          required: true
+          description: Attach Bearer JWT token
+      responses:
+        "200":
+          description: Successfully retrieved the list of transactions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/transactionIdentity"
+        "404":
+          description: Transactions not found for the current month
+
+    post:
+      summary: Post a new transaction
+      description: Creates a new transaction with the provided transaction data.
+      operationId: addTransaction
+      tags:
+        - User transaction
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: header
+          name: Authorization
+          schema:
+            type: string
+          required: true
+          description: Attach Bearer JWT token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/transaction"
+      responses:
+        "200":
+          description: New transaction data added successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/transactionIdentity"
+        "400":
+          description: Invalid data supplied
+
+  /user/transactions/{transactionId}:
+    get:
+      summary: Get details of a specific transaction
+      description: Find transaction's details by using id and JWT token
+      operationId: getTransactionById
+      tags:
+        - User transaction
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: header
+          name: Authorization
+          schema:
+            type: string
+          required: true
+          description: Attach Bearer JWT token
+        - in: path
+          name: transactionId
+          schema:
+            type: integer
+          required: true
+          description: Id of the transaction
+      responses:
+        "200":
+          description: Successfully retrieved the transaction details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/transaction"
+        "400":
+          description: The transaction Id provided is invalid
+        "404":
+          description: The transaction with the specified Id was not found
+
+    put:
+      summary: Modify an existing transaction
+      description: Modify an existing transaction by using the transaction Id, JWT token, and updated transaction data
+      operationId: updateTransaction
+      tags:
+        - User transaction
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: header
+          name: Authorization
+          schema:
+            type: string
+          required: true
+          description: Attach Bearer JWT token
+        - in: path
+          name: transactionId
+          required: true
+          schema:
+            type: integer
+          description: Id of the transaction to be modified
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/transaction"
+      responses:
+        "200":
+          description: Transaction data updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/transaction"
+        "400":
+          description: Invalid Id or data supplied
+        "404":
+          description: Transaction not found
+
+    delete:
+      summary: Delete an existing transaction
+      description: Delete the transaction with the specified Id
+      operationId: deleteTransaction
+      tags:
+        - User transaction
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: header
+          name: Authorization
+          schema:
+            type: string
+          required: true
+          description: Attach Bearer JWT token
+        - in: path
+          name: transactionId
+          required: true
+          schema:
+            type: integer
+          description: The unique identifier of the transaction to delete
+      responses:
+        "400":
+          description: Invalid transaction Id supplied
+        "404":
+          description: Transaction not found
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    transaction:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+        description:
+          type: string
+        ref:
+          type: string
+        withdrawal:
+          type: number
+        deposit:
+          type: number
+        balance:
+          type: number
+
+    transactionDetail:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+        description:
+          type: string
+        ref:
+          type: string
+        withdrawal:
+          type: number
+        deposit:
+          type: number
+        balance:
+          type: number
+
+    transactionIdentity:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique Id for the transaction.
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/transactionDetail"

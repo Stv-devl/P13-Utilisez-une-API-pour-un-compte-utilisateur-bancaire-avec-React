@@ -11,7 +11,8 @@ import axios from "axios";
 const userService = async (token) => {
   try {
     const response = await axios.post(
-      "http://localhost:3001/api/v1/user/profile",
+      `${process.env.REACT_APP_API_BASE_URL}/profile`,
+
       {},
       {
         headers: {

@@ -1,14 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import loginService from "../service/loginService";
-import encryptToken from "../auth/enCrypted";
-
-const initialState = {
-  user: null,
-  token: null,
-  remember: false,
-  loading: false,
-  error: null,
-};
 
 /**
  * Async thunk for user login. Attempts to log the user with credentials.
@@ -25,7 +16,7 @@ export const loginUser = createAsyncThunk(
     try {
       const { token } = await loginService(username, password);
       if (rememberMe) {
-        encryptToken(rememberMe, token);
+        localStorage.setItem("Token", token);
       }
       return { token, rememberMe };
     } catch (err) {
@@ -33,6 +24,13 @@ export const loginUser = createAsyncThunk(
     }
   }
 );
+
+const initialState = {
+  token: null,
+  remember: false,
+  loading: false,
+  error: null,
+};
 
 const authSlice = createSlice({
   name: "auth",

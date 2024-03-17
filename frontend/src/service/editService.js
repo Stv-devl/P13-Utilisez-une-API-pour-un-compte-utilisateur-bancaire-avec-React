@@ -13,7 +13,7 @@ import axios from "axios";
 const editService = async (firstName, lastName, token) => {
   try {
     const response = await axios.put(
-      "http://localhost:3001/api/v1/user/profile",
+      `${process.env.REACT_APP_API_BASE_URL}/profile`,
       {
         firstName: firstName,
         lastName: lastName,

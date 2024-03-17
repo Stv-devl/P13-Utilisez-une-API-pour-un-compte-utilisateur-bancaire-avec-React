@@ -27,6 +27,8 @@ export const userVerification = createAsyncThunk(
  * @param {string} token - The jwt token for user identification.
  * @returns {Object} - A object with the updated names
  */
+
+//j'ai changer les variable ici voir si ça déconne!
 export const editUserName = createAsyncThunk(
   "user/editUserName",
   async ({ firstName, lastName, token }, { rejectWithValue }) => {

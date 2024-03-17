@@ -47,6 +47,7 @@ const Header = ({ firstName, lastName, isAuthenticated }) => {
         lastName: newLastName,
         token: isAuthenticated,
       };
+
       dispatch(editUserName(updatedNames));
       dispatch(userVerification(isAuthenticated));
       setIsEditing(false);

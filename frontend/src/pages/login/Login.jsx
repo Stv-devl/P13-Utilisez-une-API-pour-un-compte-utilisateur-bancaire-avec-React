@@ -28,7 +28,7 @@ const Login = () => {
     e.preventDefault();
     const credentials = { username, password, rememberMe };
     dispatch(loginUser(credentials)).then(() => {
-      navigate("/dashboard");
+      navigate("/profil");
     });
   };
 

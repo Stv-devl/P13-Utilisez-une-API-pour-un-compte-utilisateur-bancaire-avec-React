@@ -28,7 +28,7 @@ const Banner = () => {
     dispatch(userLogout());
     localStorage.removeItem("Token");
     setIsLogin(false);
-    navigate("/login");
+    navigate("/home");
   };
 
   return (
@@ -43,7 +43,7 @@ const Banner = () => {
       </Link>
       {isLogin ? (
         <div className="loginWrapper">
-          <Link className="main-nav-logo" to={`/dashboard`}>
+          <Link className="main-nav-logo" to={`/profil`}>
             <img
               className="user-avatar"
               src="./man-profil.png"
