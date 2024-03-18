@@ -33,28 +33,25 @@ const Header = ({ firstName, lastName, isAuthenticated }) => {
   /**
    * Function to handle the form submission,verifiy with regex, validating names and dispatching update.
    */
-  const handleSubmit = useCallback(
-    (e) => {
-      e.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-      if (!validateName(newFirstName) || !validateName(newLastName)) {
-        setError("Please write correct informations");
-        return;
-      }
+    if (!validateName(newFirstName) || !validateName(newLastName)) {
+      setError("Please write correct informations");
+      return;
+    }
 
-      const updatedNames = {
-        firstName: newFirstName,
-        lastName: newLastName,
-        token: isAuthenticated,
-      };
+    const updatedNames = {
+      firstName: newFirstName,
+      lastName: newLastName,
+      token: isAuthenticated,
+    };
 
-      dispatch(editUserName(updatedNames));
-      dispatch(userVerification(isAuthenticated));
-      setIsEditing(false);
-      setError("");
-    },
-    [newFirstName, newLastName, isAuthenticated, dispatch]
-  );
+    dispatch(editUserName(updatedNames));
+    dispatch(userVerification(isAuthenticated));
+    setIsEditing(false);
+    setError("");
+  };
 
   /**
    * function to Handle the cancellation of the editing, resetting the editing state and any error messages.
