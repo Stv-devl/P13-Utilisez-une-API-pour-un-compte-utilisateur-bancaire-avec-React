@@ -46,25 +46,6 @@ Intall npm :
 npm install
 ```
 
-Install React-rooter-dom :
-
-```bash
-npm add react-router-dom
-```
-
-Install Axios :
-
-```bash
-npm add axios
-```
-
-Install redux and redux toolkit :
-
-```bash
-npm install react-redux @reduxjs/toolkit
-
-```
-
 Launch the FrontEnd :
 
 ```bash
@@ -88,6 +69,7 @@ npm start
 - "redux": "^5.0.1",
 - "redux-thunk": "^3.1.0",
 - "web-vitals": "^2.1.4"
+- "Node" : v20.11.0
 
 ## Author
 

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { editUserName, userVerification } from "../../features/userSlice";
 import Edit from "./Edit";

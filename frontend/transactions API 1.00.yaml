@@ -1,14 +1,127 @@
 openapi: 3.0.3
 info:
-  title: Bank Argent transactions API 1.00
-  description: A list of available endpoints for the transactions
-  termsOfService: https://smartbear.com/terms-of-use/
-  version: 2.0.0
-
+  title: Bank Argent API documentation
+  description: Contains all available API endpoints in this codebase
+  termsOfService: http://swagger.io/terms/
+  version: 1.0.0
 servers:
-  - url: "https"
-
+  - url: http://localhost:3001/api/v1
 paths:
+  /user/login:
+    post:
+      tags:
+        - User Module
+      summary: Login
+      description: API for Login
+      requestBody:
+        description: Login Payload
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Login"
+        required: true
+      responses:
+        "200":
+          description: Login Successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginResponse"
+        "400":
+          description: Invalid Fields
+          content: {}
+        "500":
+          description: Internal Server Error
+          content: {}
+  /user/signup:
+    post:
+      tags:
+        - User Module
+      summary: Signup
+      description: API for Signup
+      requestBody:
+        description: Signup Payload
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+        required: true
+      responses:
+        "200":
+          description: Signup Successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponse"
+        "400":
+          description: Invalid Fields
+          content: {}
+        "500":
+          description: Internal Server Error
+          content: {}
+  /user/profile:
+    put:
+      tags:
+        - User Module
+      summary: User Profile API
+      description: API for updating a user profile
+      parameters:
+        - name: Authorization
+          in: header
+          description: Attach Bearer JWT token
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Update user profile attributes
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserProfile"
+        required: true
+      responses:
+        "200":
+          description: User profile updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponse"
+        "400":
+          description: Invalid Fields
+          content: {}
+        "500":
+          description: Internal Server Error
+          content: {}
+      security:
+        - bearerAuth: []
+    post:
+      tags:
+        - User Module
+      summary: User Profile API
+      description: API for fetching a user profile
+      parameters:
+        - name: Authorization
+          in: header
+          description: Attach Bearer JWT token
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: User profile retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponse"
+        "400":
+          description: Invalid Fields
+          content: {}
+        "500":
+          description: Internal Server Error
+          content: {}
+      security:
+        - bearerAuth: []
+
   /user/transactions:
     get:
       summary: Get a list of transactions for the current month
@@ -174,6 +287,50 @@ components:
       scheme: bearer
       bearerFormat: JWT
   schemas:
+    User:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+    Login:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+    ApiResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+        message:
+          type: string
+        body:
+          type: object
+          properties:
+            id:
+              type: string
+            email:
+              type: string
+    LoginResponse:
+      type: object
+      properties:
+        token:
+          type: string
+    UserProfile:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
     transaction:
       type: object
       properties:
